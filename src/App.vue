@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-gray-200 min-h-screen">
+  <div id="app" class="bg-white min-h-screen">
       <header class="h-14 shadow-xl border-b-2 w-full flex items-center justify-center">
         <a>
             <img class="h-8" src="/assets/contractuo-logo.svg" alt="logo">
