@@ -10,35 +10,18 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import helper function to easily access the state properties
+import { mapState } from 'vuex';
 
 export default {
-  // define the initial data
-  data() {
-    return {
-      // initialize values
-      article: {
-        title: '',
-        url: '',
-        image_url: '',
-        summary: ''
-      }
-    };
-  },
+  computed: mapState({
+    article: state => state.article
+  }),
   created() {
     // store the :id 
     const articleId = this.$route.params.id;
-
-      // API call to fetch the article by ID
-      axios
-        .get(`https://api.spaceflightnewsapi.net/v4/articles/${articleId}`)
-        .then(response => {
-          console.log(response.data);
-          this.article = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        })
+    // dispatch action from the store
+    this.$store.dispatch('fetchArticle', articleId);
   }
 }
 </script>

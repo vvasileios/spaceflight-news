@@ -1,10 +1,10 @@
 <template>
   <div class="container mx-auto mt-8 shadow-xl">
-    <table class="w-full overflow-auto">
+    <table class="w-full">
       <thead class="bg-white-200 border-2 shadow-xl">
         <tr>
-          <th class="p-4 text-xl font-bold tracking-wide text-left">Title</th>
-          <th class="p-4 text-xl font-bold tracking-wide text-left">Published Date</th>
+          <th class="p-4 text-xl font-bold text-left">Title</th>
+          <th class="p-4 text-xl font-bold text-left">Published Date</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-white-200 border-2">
@@ -18,27 +18,16 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import helper function to easily access the state properties
+import { mapState } from 'vuex';
 
 export default {
-  // define the initial data
-  data() {
-    return {
-      // array to store the retrieved articles
-      articles: []
-    }
-  },
+  computed: mapState({
+    articles: state => state.articles
+  }),
   created() {
-    // fetching 20 articles from API
-    axios
-      .get('https://api.spaceflightnewsapi.net/v4/articles/?limit=20')
-      .then(response => {
-        console.log(response.data.results)
-        this.articles = response.data.results;
-      })
-      .catch(error => {
-        console.log(error);
-      })
+    // dispatch action from the store
+    this.$store.dispatch('fetchArticles');
   },
   methods: {
     // go to show page for a specific article (:id) when clicked
