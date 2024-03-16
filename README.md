@@ -16,18 +16,18 @@ Below you’ll find some directions to setup the development environment and pro
     - npm run dev to start the project
 
 ## Project details
+Setup:
 
-We have already setup Vue.js, Vue router, and Vuex for you.
+Vue.js, Vue router, and Vuex.
 
-Axios is already installed to be used for api calls.
+Axios for API calls.
 
-In terms of the UI, we have installed and configured :
+In terms of the UI:
 
 -   <a href="https://tailwindcss.com/" target="_blank">Tailwindcss</a>
 
-Feel free to use it or just use custom css.
 
-You should use this api to retrieve the data.
+ Api to retrieve the data.
 
 -   <a href="https://api.spaceflightnewsapi.net/v4/docs/" target="_blank">Spaceflight news API</a>
 
@@ -38,10 +38,10 @@ As a user, I want to be able to open the application and get a list of 20 blog a
 ## Requirements
 The application should have a total of 2 pages.
 
-- Home page (landing page, we provide that), but you need to update the page according to the functionality.
+- Home page
 - Show page that presents a preview of each article.
-- Ideally, the data retrieved from the API should be saved in the Vuex store and retrieved from the store for the home page.
-- For the Show page you should find and retrieve the saved article from the store, if there are articles retrieved (a user clicked from the home page to view an article)
+- The data retrieved from the API should be saved in the Vuex store and retrieved from the store for the home page.
+- For the Show page, find and retrieve the saved article from the store, if there are articles retrieved.
 - In the show page, after the user refreshes the page, the article should be retrieved from the API instead of the store.
 
 ### Functionality
@@ -53,7 +53,3 @@ The application should have a total of 2 pages.
     - the title of the article
     - a link that points to the articles url (the link should have the text: *Open Article*.)
     - When clicking on the text, it should open the article's post in a separate tab.
-
-## Once completed
-
-Upload the application to GitHub and send us a link to the repository in your submission email reply.
