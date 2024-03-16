@@ -8,9 +8,14 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-white-200 border-2">
-        <tr v-for="(article, index) in articles" :key="index" @click="showArticle(article)" class="cursor-pointer hover:underline">
+        <tr
+          v-for="(article, index) in articles"
+          :key="index"
+          @click="showArticle(article)"
+          class="cursor-pointer hover:underline"
+        >
           <td class="p-4 font-semibold">{{ article.title }}</td>
-          <td class="p-4 font-semibold"> {{ article.published_at }}</td>
+          <td class="p-4 font-semibold">{{ article.published_at }}</td>
         </tr>
       </tbody>
     </table>
@@ -19,21 +24,21 @@
 
 <script>
 // import helper function to easily access the state properties
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   computed: mapState({
-    articles: state => state.articles
+    articles: (state) => state.articles,
   }),
   created() {
     // dispatch action from the store
-    this.$store.dispatch('fetchArticles');
+    this.$store.dispatch("fetchArticles");
   },
   methods: {
     // go to show page for a specific article (:id) when clicked
     showArticle(article) {
-      this.$router.push({ name: 'show', params: {id: article.id} })
-    }
-  }
-}
+      this.$router.push({ name: "show", params: { id: article.id } });
+    },
+  },
+};
 </script>
