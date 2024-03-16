@@ -1,5 +1,3 @@
-<p align="center"><a href="https://contractuo.com/" target="_blank"><img src="./public/assets/contractuo-logo.svg" width="400" alt="logo"></a></p>
-
 # The assignment
 A simple spaceflight news blog website.
 
