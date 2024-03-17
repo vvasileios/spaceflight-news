@@ -16,18 +16,17 @@
 </template>
 
 <script>
-// import helper function to easily access the state properties
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
-  computed: mapState({
-    article: (state) => state.article,
-  }),
+  computed: {
+    ...mapGetters({
+      article: "getArticle",
+    }),
+  },
+
   created() {
-    // store the :id
-    const articleId = this.$route.params.id;
-    // dispatch action from the store
-    this.$store.dispatch("fetchArticle", articleId);
+    this.$store.dispatch("fetchArticle", this.$route.params.id);
   },
 };
 </script>
