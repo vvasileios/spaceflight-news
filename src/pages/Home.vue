@@ -13,11 +13,13 @@
           v-for="(article, index) in articles"
           :key="index"
           @click="showArticle(article)"
-          class="cursor-pointer hover:underline"
+          class="cursor-pointer hover:opacity-50"
         >
           <td class="p-4 font-semibold">{{ article.title }}</td>
-          <td class="p-4 font-semibold">{{ date(article.published_at) }}</td>
-          <td class="p-4 font-semibold">
+          <td class="p-4">
+            {{ date(article.published_at) }}
+          </td>
+          <td class="p-4">
             {{ time(article.published_at) }}
           </td>
         </tr>
