@@ -12,7 +12,7 @@ const routes = [
     path: "/show/:id",
     name: "show",
     component: ShowView,
-    props: true, // This enables the route params to be passed as props to the component
+    props: true,
   },
 ];
 

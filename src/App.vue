@@ -4,7 +4,7 @@
       class="h-14 shadow-xl border-b-2 w-full flex items-center justify-center"
     >
       <a>
-        <img class="h-8" src="/assets/contractuo-logo.svg" alt="logo" />
+        <img class="h-8" src="" alt="logo" />
       </a>
     </header>
 
