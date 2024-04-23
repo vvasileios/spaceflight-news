@@ -1,3 +1,25 @@
+<script setup>
+import { computed, onMounted } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import moment from "moment";
+
+const store = useStore();
+
+const router = useRouter();
+
+const articles = computed(() => store.getters.getArticles);
+
+onMounted(() => store.dispatch("fetchArticles"));
+
+const showArticle = (article) =>
+  router.push({ name: "show", params: { id: article.id } });
+
+const dateFormatter = (date) => moment(date).format("MMM Do YY");
+
+const timeFormatter = (time) => moment(time).format("LT");
+</script>
+
 <template>
   <div class="container mx-auto mt-8 shadow-xl">
     <table class="w-full">
@@ -17,44 +39,13 @@
         >
           <td class="p-4 font-semibold">{{ article.title }}</td>
           <td class="p-4">
-            {{ date(article.published_at) }}
+            {{ dateFormatter(article.published_at) }}
           </td>
           <td class="p-4">
-            {{ time(article.published_at) }}
+            {{ timeFormatter(article.published_at) }}
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
-
-<script>
-import { mapGetters } from "vuex";
-import moment from "moment";
-
-export default {
-  computed: {
-    ...mapGetters({
-      articles: "getArticles",
-    }),
-  },
-
-  created() {
-    this.$store.dispatch("fetchArticles");
-  },
-
-  methods: {
-    showArticle(article) {
-      this.$router.push({ name: "show", params: { id: article.id } });
-    },
-
-    date(date) {
-      return moment(date).format("MMM Do YY");
-    },
-
-    time(time) {
-      return moment(time).format("LT");
-    },
-  },
-};
-</script>

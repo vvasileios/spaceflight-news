@@ -1,3 +1,16 @@
+<script setup>
+import { onMounted, computed } from "vue";
+import { useStore } from "vuex";
+import { useRoute } from "vue-router";
+
+const store = useStore();
+const route = useRoute();
+
+const article = computed(() => store.getters.getArticle);
+
+onMounted(() => store.dispatch("fetchArticle", route.params.id));
+</script>
+
 <template>
   <div class="flex items-center justify-center mt-60">
     <div class="bg-white-200 shadow-xl border-2 p-8 max-w-xl">
@@ -19,19 +32,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import { mapGetters } from "vuex";
-
-export default {
-  computed: {
-    ...mapGetters({
-      article: "getArticle",
-    }),
-  },
-
-  created() {
-    this.$store.dispatch("fetchArticle", this.$route.params.id);
-  },
-};
-</script>

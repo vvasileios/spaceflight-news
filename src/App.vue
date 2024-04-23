@@ -1,3 +1,5 @@
+<script setup></script>
+
 <template>
   <div id="app" class="bg-white min-h-screen">
     <header
@@ -13,7 +15,3 @@
     </main>
   </div>
 </template>
-
-<script>
-export default {};
-</script>
