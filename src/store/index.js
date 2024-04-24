@@ -43,9 +43,9 @@ export default createStore({
     },
 
     fetchArticle({ commit, state }, article) {
-      // if (state.article && state.article.id === article) {
-      //   return;
-      // }
+      if (state.article && state.article.id === article) {
+        return;
+      }
       axios
         .get(`https://api.spaceflightnewsapi.net/v4/articles/${article}`)
         .then((response) => {
