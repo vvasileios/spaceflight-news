@@ -34,7 +34,6 @@ export default createStore({
       axios
         .get("https://api.spaceflightnewsapi.net/v4/articles/?limit=50")
         .then((response) => {
-          console.log(response.data);
           commit("SET_ARTICLES", response.data.results);
         })
         .catch((error) => {
@@ -49,7 +48,6 @@ export default createStore({
       axios
         .get(`https://api.spaceflightnewsapi.net/v4/articles/${article}`)
         .then((response) => {
-          console.log(response.data);
           commit("SET_ARTICLE", response.data);
         })
         .catch((error) => {

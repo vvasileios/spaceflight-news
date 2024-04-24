@@ -1,34 +1,62 @@
 <script setup>
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
+import moment from "moment";
 
 const store = useStore();
+const router = useRouter();
 const route = useRoute();
+
+onMounted(() => store.dispatch("fetchArticle", route.params.id));
 
 const article = computed(() => store.getters.getArticle);
 
-onMounted(() => store.dispatch("fetchArticle", route.params.id));
+const dateFormatter = (date) => moment(date).format("MMM Do YY");
+
+const timeFormatter = (time) => moment(time).format("HH:mm");
+
+const goBack = () => router.push({ name: "home" });
+
+const hyperLink = (link) => window.open(link, "_blank");
 </script>
 
 <template>
-  <div class="flex items-center justify-center mt-60">
-    <div class="bg-white-200 shadow-xl border-2 p-8 max-w-xl">
-      <h2 class="text-xl font-bold mb-4">{{ article.title }}</h2>
-      <img
-        v-if="article.image_url"
-        :src="article.image_url"
-        class="mb-10 mt-10"
-      />
-      <p class="mb-4">{{ article.summary }}</p>
-      <a
-        :href="article.url"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-blue-500 hover:cursor-pointer hover:underline"
+  <div
+    class="container flex flex-col relative mx-auto my-10 border shadow-xl rounded-xl"
+  >
+    <div class="flex flex-col justify-center items-center">
+      <h1 class="font-bold text-sm md:text-xl my-3">{{ article.news_site }}</h1>
+      <h2 class="font-medium text-xs md:text-lg">{{ article.title }}</h2>
+      <div class="w-2/3 my-5">
+        <img
+          :src="article.image_url"
+          class="rounded-2xl"
+          alt="Image of Article"
+        />
+      </div>
+      <div class="flex gap-2 mb-5">
+        <p class="font-semibold text-xs text-slate-600">
+          {{ dateFormatter(article.published_at) }}
+        </p>
+        <p class="font-semibold text-xs text-slate-600">
+          {{ timeFormatter(article.published_at) }}
+        </p>
+      </div>
+    </div>
+    <div class="flex justify-between mx-10 mb-5">
+      <button
+        class="bg-transparent hover:bg-blue-700 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        @click="goBack"
       >
-        Open Article
-      </a>
+        Back
+      </button>
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        @click="hyperLink(article.url)"
+      >
+        Full Article
+      </button>
     </div>
   </div>
 </template>

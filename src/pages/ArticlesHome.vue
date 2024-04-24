@@ -29,7 +29,7 @@ const timeFormatter = (time) => moment(time).format("HH:mm");
   >
     <div class="flex flex-col justify-center items-center">
       <h1 class="font-bold text-sm md:text-xl my-3">{{ article.news_site }}</h1>
-      <h2 class="font-medium">{{ article.title }}</h2>
+      <h2 class="font-medium text-xs md:text-lg">{{ article.title }}</h2>
       <div class="w-2/3 my-5">
         <img
           :src="article.image_url"
