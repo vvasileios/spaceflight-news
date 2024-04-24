@@ -17,35 +17,25 @@ const showArticle = (article) =>
 
 const dateFormatter = (date) => moment(date).format("MMM Do YY");
 
-const timeFormatter = (time) => moment(time).format("LT");
+const timeFormatter = (time) => moment(time).format("HH:mm");
 </script>
 
 <template>
-  <div class="container mx-auto mt-8 shadow-xl">
-    <table class="w-full">
-      <thead class="bg-white-200 border-2 shadow-xl">
-        <tr>
-          <th class="p-4 text-xl font-bold text-left">Title</th>
-          <th class="p-4 text-xl font-bold text-left">Date</th>
-          <th class="p-4 text-xl font-bold text-left">Time</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-white-200 border-2">
-        <tr
-          v-for="(article, index) in articles"
-          :key="index"
-          @click="showArticle(article)"
-          class="cursor-pointer hover:opacity-50"
-        >
-          <td class="p-4 font-semibold">{{ article.title }}</td>
-          <td class="p-4">
-            {{ dateFormatter(article.published_at) }}
-          </td>
-          <td class="p-4">
-            {{ timeFormatter(article.published_at) }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div
+    v-for="(article, index) in articles"
+    :key="index"
+    class="container mx-auto my-10 shadow-xl rounded cursor-pointer hover:opacity-50"
+    @click="showArticle(article)"
+  >
+    <div class="flex flex-col justify-center items-center">
+      <h1>{{ article.news_site }}</h1>
+      <div class="w-2/3">
+        <img :src="article.image_url" alt="Image of Article" />
+      </div>
+
+      <h2>{{ article.title }}</h2>
+      <p>{{ dateFormatter(article.published_at) }}</p>
+      <p>{{ timeFormatter(article.published_at) }}</p>
+    </div>
   </div>
 </template>

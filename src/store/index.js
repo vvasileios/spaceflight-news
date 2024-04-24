@@ -32,8 +32,9 @@ export default createStore({
   actions: {
     fetchArticles({ commit }) {
       axios
-        .get("https://api.spaceflightnewsapi.net/v4/articles/?limit=20")
+        .get("https://api.spaceflightnewsapi.net/v4/articles/?limit=50")
         .then((response) => {
+          console.log(response.data);
           commit("SET_ARTICLES", response.data.results);
         })
         .catch((error) => {
@@ -42,13 +43,13 @@ export default createStore({
     },
 
     fetchArticle({ commit, state }, article) {
-      if (state.article && state.article.id === article) {
-        return;
-      }
-
+      // if (state.article && state.article.id === article) {
+      //   return;
+      // }
       axios
         .get(`https://api.spaceflightnewsapi.net/v4/articles/${article}`)
         .then((response) => {
+          console.log(response.data);
           commit("SET_ARTICLE", response.data);
         })
         .catch((error) => {
