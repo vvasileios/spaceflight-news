@@ -1,9 +1,13 @@
 <script setup>
+import { ref } from "vue";
 import moment from "moment";
 
 defineProps({
   articles: Array,
 });
+
+const headerRowClasses = ref("p-4");
+const tableRowClasses = ref("p-4");
 
 const emit = defineEmits(["articleSelected"]);
 
@@ -17,28 +21,26 @@ const timeFormatter = (time) => moment(time).format("HH:mm");
 </script>
 
 <template>
-  <div class="container mx-auto mt-8 shadow-xl">
+  <div class="container mx-auto my-10 shadow-2xl bg-white overflow-auto">
     <table class="w-full">
-      <thead class="bg-white-200 border-2 shadow-xl">
-        <tr>
-          <th class="p-4 text-xl font-bold text-left">Title</th>
-          <th class="p-4 text-xl font-bold text-left">Date</th>
-          <th class="p-4 text-xl font-bold text-left">Time</th>
+      <thead class="border-2">
+        <tr class="text-lg md:text-xl text-left">
+          <th :class="[headerRowClasses]">Agency</th>
+          <th :class="[headerRowClasses]">Title</th>
+          <th :class="[headerRowClasses]">Date</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-white-200 border-2">
+      <tbody class="border-2">
         <tr
           v-for="(article, index) in articles"
           :key="index"
-          class="cursor-pointer hover:opacity-50"
+          class="cursor-pointer hover:opacity-50 text-sm md:text-lg border-b-2"
           @click="showArticle(article)"
         >
-          <td class="p-4 font-semibold">{{ article.title }}</td>
-          <td class="p-4">
+          <td :class="[tableRowClasses]">{{ article.news_site }}</td>
+          <td :class="[tableRowClasses]">{{ article.title }}</td>
+          <td :class="[tableRowClasses]">
             {{ dateFormatter(article.published_at) }}
-          </td>
-          <td class="p-4">
-            {{ timeFormatter(article.published_at) }}
           </td>
         </tr>
       </tbody>
