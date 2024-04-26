@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import moment from "moment";
+import { dateFormatter } from "../utils/formatter.js";
 
 defineProps({
   articles: Array,
@@ -14,10 +14,6 @@ const emit = defineEmits(["articleSelected"]);
 const showArticle = (article) => {
   emit("articleSelected", article);
 };
-
-const dateFormatter = (date) => moment(date).format("MMM Do YY");
-
-const timeFormatter = (time) => moment(time).format("HH:mm");
 </script>
 
 <template>

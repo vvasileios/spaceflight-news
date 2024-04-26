@@ -2,7 +2,7 @@
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
-import moment from "moment";
+import { dateFormatter, timeFormatter } from "../utils/formatter.js";
 
 const store = useStore();
 const router = useRouter();
@@ -11,10 +11,6 @@ const route = useRoute();
 onMounted(() => store.dispatch("fetchArticle", route.params.id));
 
 const article = computed(() => store.getters.getArticle);
-
-const dateFormatter = (date) => moment(date).format("MMM Do YY");
-
-const timeFormatter = (time) => moment(time).format("HH:mm");
 
 const goBack = () => router.push({ name: "home" });
 
