@@ -21,10 +21,10 @@ const hyperLink = (url) => emit("fullArticle", url);
         {{ singleArticle.news_site }}
       </h1>
       <h2 class="font-medium text-xs md:text-lg">{{ singleArticle.title }}</h2>
-      <div class="w-2/3 my-5">
+      <div class="w-2/3 my-5 flex justify-center items-center">
         <img
           :src="singleArticle.image_url"
-          class="rounded-2xl"
+          class="w-72 h-48 rounded-2xl object-cover"
           alt="Image of Article"
         />
       </div>
